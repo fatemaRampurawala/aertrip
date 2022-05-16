@@ -14,4 +14,14 @@ class EmployeeModel extends Model
     protected $table = 'employees';
     protected $primaryKey = 'id';
     protected $allowedFields = ['name', 'deptid'];
+    
+    public function likeFunc($name){
+        $builder = $this->builder();
+        $builder->select('*');
+        $builder->like('name','%'.$name.'%', 'both'); 
+        $query = $builder->get();
+        return $query->getResult();
+    }
+            
 }
+
